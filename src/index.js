@@ -1,4 +1,5 @@
 import c3 from "c3"
+import { chart } from "c3";
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
 window.loadChart = function (json){
@@ -24,7 +25,7 @@ const { type, data } = obj;
       height: 800,
     },
     legend: {
-      hide: 'Apples',
+      //hide: 'Apples',
       position: 'right'
     },
     bindto: '#chart',
@@ -53,4 +54,22 @@ const { type, data } = obj;
       columns: data,
     },
   });
+// transform chart api ("window." means available for use to filemaker)
+window.transformChart = function (type) {
+  chart.transform(type);
+}
+
+window.reloadData = function (data){
+  const columns = JSON.parse(data);
+  console.log(data);
+  chart.load ({
+    columns: columns,
+    //unload: ["data2", "data3"],
+  });
 };
+
+window.stackChart = function (){
+  chart.groups([["Apples", "Peaches", "Strawberries"]])
+}
+
+}
