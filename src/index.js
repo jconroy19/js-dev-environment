@@ -14,6 +14,11 @@ window.loadChart = function (json){
 const { type, data } = obj;
 
   var chart = c3.generate({
+    grid: {
+      x: {
+        show: true
+      }
+    },
     size: {
       width: 640,
       height: 800,
